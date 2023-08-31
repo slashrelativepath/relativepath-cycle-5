@@ -12,3 +12,7 @@ Create virtual machine hello world
 On a mac, run this:
 
 `zsh webserver-darwin.sh`
+
+on linux runn this:
+
+`bash webserver-linux.sh`
