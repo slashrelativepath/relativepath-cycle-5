@@ -18,7 +18,7 @@ else
 fi
 
 echo "Checking if Multipass is installed" 
-if ( which multipass ) 
+if ( multipass version ) 
 then
   echo "Multipass is installed" 
 else 
