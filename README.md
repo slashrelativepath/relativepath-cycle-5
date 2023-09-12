@@ -4,7 +4,7 @@ A repository for relativepath-cycle-5
 
 ## Create a WebServer
 
-Create virtual machine hello world
+Create virtual machine, utillizing Ubuntu 22.04
 
 
 ## Usage
