@@ -4,8 +4,11 @@ A repository for relativepath-cycle-5
 
 ## Create a WebServer
 
-Create virtual machine hello world
+Create virtual machine and install nginx.
 
+### Specifications
+* ubuntu virtual machine
+* nginx
 
 ## Usage
 
