@@ -1,8 +1,8 @@
 
-echo "checking if Nano is installed"
+echo "Checking if Nano is installed"
 if ( which nano )
 then
-  echo "Nano already installed"
+  echo "Nano is installed"
 else
   echo "Installing Nano"
   sudo pacman -S nano
