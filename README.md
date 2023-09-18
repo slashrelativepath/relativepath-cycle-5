@@ -19,3 +19,8 @@ On a mac, run this:
 on linux runn this:
 
 `bash webserver-linux.sh`
+
+#### Contributors
+
+Stephen Relativepath
+
