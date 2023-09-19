@@ -26,4 +26,41 @@ else
   echo "installing nano"
   brew install nano 
 fi
+# Launch Relativepath instance
+if ( multipass list | grep relativepath | grep Running > /dev/null )
+then 
+  echo -e "\n==== Relativepath VM present ====\n"
+else 
+  echo -e "\n==== Creating Relativepath VM ====\n"
+  multipass launch --name relativepath --cloud-init cloud-init.yaml
+fi
+# Launch Relativepath instance
+if ( multipass list | grep relativepath | grep Running > /dev/null )
+then 
+  echo -e "\n==== Relativepath VM present ====\n"
+else 
+  echo -e "\n==== Creating Relativepath VM ====\n"
+  multipass launch --name relativepath --cloud-init cloud-init.yaml
+fi
+ Launch Relativepath instance
+if ( multipass list | grep relativepath | grep Running > /dev/null )
+then 
+  echo -e "\n==== Relativepath VM present ====\n"
+else 
+  echo -e "\n==== Creating Relativepath VM ====\n"
+  multipass launch --name relativepath --cloud-init cloud-init.yaml
+fi
+if ( multipass list | grep relativepath | grep Running > /dev/null )
+then 
+  echo -e "\n==== Relativepath VM present ====\n"
+else 
+  echo -e "\n==== Creating Relativepath VM ====\n"
+fi
+if ( multipass list | grep relativepath | grep Running > /dev/null )
+then 
+  echo -e "\n==== Relativepath VM present ====\n"
+else 
+  echo -e "\n==== Creating Relativepath VM ====\n"
+  multipass launch --name relativepath 
+fi
 
