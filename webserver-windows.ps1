@@ -1,43 +1,52 @@
 Write-Output "Checking dependencies"
 
 # install chocolatey if choco.exe is not present
-if (-not (Get-Command -Name choco.exe -ErrorAction SilentlyContinue)) {
+if (Get-Command -Name choco.exe -ErrorAction SilentlyContinue) {
+    Write-Output "Chocolatey Already Installed"
+}
+else {
     Write-Output "Installing Chocolatey"
     # ensure that you are using an administrative shell - a non-admin installation exists
     Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 }
 
+
 # install git if git.exe is not installed
-if (-not (Get-Command -Name git.exe -ErrorAction SilentlyContinue)) {
+if (Get-Command -Name git.exe -ErrorAction SilentlyContinue) {
+    Write-Output "Git Already Installed"
+}
+else {
     Write-Output  "Installing Git"
-    choco install git.install
+    choco install -y git.install --params "'/GitAndUnixToolsOnPath /WindowsTerminal'"
 }
 
 # install Nano if nano.exe is not installed
-if (-not (Get-Command -Name nano.exe -ErrorAction SilentlyContinue)) {
+if (Get-Command -Name nano.exe -ErrorAction SilentlyContinue) {
     Write-Output  "Installing Nano"
-    choco install nano
+}
+else {
+    Write-Output  "Installing Nano"
+    choco install -y nano
 }
 
-# might need to handle using Hyper-V or Virtualbox instead of the below
-# install VirtualBox if .exe is not installed
-if (Get-Command -Name VirtualBox.exe -ErrorAction SilentlyContinue) {
-    Write-Output  "Installing Virtualbox"
-    # choco install virtualbox
-}
 
 # install Multipass if .exe is not installed
-if (-not (Get-Command -Name multipass.exe -ErrorAction SilentlyContinue)) {
+if (Get-Command -Name multipass.exe -ErrorAction SilentlyContinue) {
+    Write-Output "Multipass is here"
+}
+else {
     Write-Output  "Installing Multipass"
-    choco install multipass
+    # break virtualbox install out of this conditional
+    choco install -y virtualbox --params "'/NoDesktopShortcut /ExtensionPack'"
+    choco install -y multipass --force --params "'/HyperVisor:VirtualBox'"
 }
 
 # initialize or start Ubuntu VM
-if ( -not (multipass info --all) ){
-    Write-Output "Launching Ubuntu LTS"
-    multipass launch lts --name relativepath5
+if ( multipass info relativepath ){
+    Write-Output "The instance already exists"
 }
 else {
-    multipass start relativepath5
+    Write-Output "Launching Ubuntu LTS"
+    multipass launch lts --name relativepath
 }
 
