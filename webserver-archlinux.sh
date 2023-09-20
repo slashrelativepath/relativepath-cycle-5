@@ -23,19 +23,12 @@ then
   echo "Multipass is installed" 
 else 
   echo "Installing Multipass..." 
-  if ( [ ! -d snapd ] ) 
+  if  [ -d snapd ]  
   then 
-    git clone https://aur.archlinux.org/snapd.git
+    echo "snapd directory exists"
   else
-    echo "snapd directory already exists"
-    read -p "Do you wish to use existing directory? (yes/no) " yn
-    case $yn in
-      yes | y ) echo Using existing directory...;;
-      no | n ) echo Exiting...;
-        exit;;
-      * ) echo Invalid input;
-        exit 1;;
-    esac
+    echo "cloning snapd"
+    git clone https://aur.archlinux.org/snapd.git
   fi
 
   if ( [ -d snapd ] )
