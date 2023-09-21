@@ -26,4 +26,18 @@ else
   echo "installing nano"
   brew install nano 
 fi
-
+  echo "spinning up a virtual machine"
+if ( multipass --version )
+then
+  echo "multipass already installed on $(uname)"
+else
+  echo "installing multipass on $(uname)"
+  if [ "$(uname)" = "Darwin" ]
+fi
+if ( multipass info relativepath | grep Running )
+then 
+  echo "relativepath vm is running"
+else 
+  echo "launching a ubuntu vm named relativepath"
+  multipass launch --name relativepath
+fi
