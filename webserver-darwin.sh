@@ -26,6 +26,12 @@ else
   echo "installing nano"
   brew install nano 
 fi
+ echo "installing multipass on $(uname)"
+  if [ "$(uname)" = "Darwin" ]
+  echo "multipass already installed on $(uname)"
+else
+  brew install --cask multipass
+fi
   echo "spinning up a virtual machine"
 if ( multipass --version )
 then
@@ -33,6 +39,8 @@ then
 else
   echo "installing multipass on $(uname)"
   if [ "$(uname)" = "Darwin" ]
+then
+  brew install --cask multipass
 fi
 if ( multipass info relativepath | grep Running )
 then 
