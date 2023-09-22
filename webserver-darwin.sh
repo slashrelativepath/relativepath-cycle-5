@@ -8,7 +8,6 @@ else
   echo "installing brew"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
-
 echo "git should be installed"
 if ( which git )
 then 
@@ -17,7 +16,6 @@ else
   echo "installing git"
   brew install git
 fi
-
 echo "nano should be installed"
 if ( which nano )
 then
