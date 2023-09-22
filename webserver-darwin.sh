@@ -31,16 +31,7 @@ fi
   echo "multipass already installed on $(uname)"
 else
   brew install --cask multipass
-fi
-  echo "spinning up a virtual machine"
-if ( multipass --version )
-then
-  echo "multipass already installed on $(uname)"
-else
   echo "installing multipass on $(uname)"
-  if [ "$(uname)" = "Darwin" ]
-then
-  brew install --cask multipass
 fi
 if ( multipass info relativepath | grep Running )
 then 
