@@ -16,15 +16,15 @@ On a mac, run this:
 
 `zsh webserver-darwin.sh`
 
-on arch linux run this:
+On arch linux run this:
 
 `bash webserver-linux.sh`
 
-on debian or ubuntu linux run this:
+On debian or ubuntu linux run this:
 
 `bash webserver-ubuntu.sh`
 
-on Windows open powershell as administrator and run:
+On Windows open powershell as administrator and run:
 `Set-ExecutionPolicy Bypass` 
 `./powershell-test.ps1`
 
