@@ -23,6 +23,14 @@ on linux run this:
 
 `bash webserver-linux.sh`
 
+On debian or ubuntu linux run this:
+
+`bash webserver-ubuntu.sh`
+
+On Windows open powershell as administrator and run:
+`Set-ExecutionPolicy Bypass` 
+`./powershell-test.ps1`
+
 #### Contributors
 
 Stephen Relativepath
