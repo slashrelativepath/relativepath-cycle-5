@@ -25,7 +25,7 @@ if ( multipass version )
 then
   echo "Multipass is installed" 
 else 
-  echo "Installing Multipass" 
+   
   # the following should not be necessary on recent versions of Ubuntu
   # checking for snapd anyway
   if ( which snap )
