@@ -1,3 +1,5 @@
+#!/bin/bash
+
 
 echo "checking if Nano is installed"
 if ( which nano )
@@ -38,13 +40,4 @@ else
     # systemctl status snapd.service
     echo "installing multipass"
     sudo snap install multipass
-
-# the following breaks this script in a bare ubuntu container
-#   git clone https://aur.archlinux.org/snapd.git
-#   cd snapd
-#   makepkg -si
-#   cd ..
-#   sudo systemctl enable --now snapd.socket
-#   sudo ln -s /var/lib/snapd /snap
-#   sudo snap install multipass
 fi
