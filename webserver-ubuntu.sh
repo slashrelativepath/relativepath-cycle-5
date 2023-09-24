@@ -34,8 +34,7 @@ else
   else
     echo "installing snapd"
     sudo apt update && sudo apt install -y snapd
-    # restarts shell
-    exec bash
+    
   fi
     # systemctl status snapd.service
     echo "installing multipass"
