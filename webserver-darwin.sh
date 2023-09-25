@@ -32,7 +32,7 @@ fi
 
 # Install multipass
   echo "installing multipass on $(uname)"
-if  [ "$(uname)" = "Darwin" ]
+if  ( which multipass )
 then
   echo "multipass already installed on $(uname)"
 else
