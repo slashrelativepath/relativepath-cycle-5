@@ -1,4 +1,5 @@
 
+
 echo "Checking if Nano is installed"
 if ( which nano )
 then

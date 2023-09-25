@@ -16,7 +16,10 @@ On a mac, run this:
 
 `zsh webserver-darwin.sh`
 
-on linux runn this:
+On Arch linux, the best linux, run this:
+`bash webserver-archlinux.sh`
+
+on linux run this:
 
 `bash webserver-linux.sh`
 
