@@ -50,7 +50,6 @@ else
   then
     echo "Waiting for processes..." && sleep 15 
     sudo snap install multipass
-    sudo snap install multipass
   fi
 
   if ( multipass version )
