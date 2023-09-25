@@ -7,7 +7,7 @@ then
   echo "brew already installed"
 else
   echo "installing brew"
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 # Install git
@@ -32,7 +32,7 @@ fi
 
 # Install multipass
   echo "installing multipass on $(uname)"
-if [ "$(uname)" = "Darwin" ]
+if  [ "$(uname)" = "Darwin" ]
 then
   echo "multipass already installed on $(uname)"
 else
@@ -49,6 +49,7 @@ else
   ssh-keygen -f "./ed25519" -t ed25519 -b 4096 -N ''
 fi
 
+# Spinning up an ubuntu vm
 if ( multipass info relativepath | grep Running )
 then 
   echo "relativepath vm is running"
