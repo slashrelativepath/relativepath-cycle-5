@@ -6,6 +6,7 @@ if (Get-Command -Name choco.exe -ErrorAction SilentlyContinue) {
 }
 else {
     Write-Output "Installing Chocolatey"
+    # ensure that you are using an administrative shell - a non-admin installation exists
     Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 }
 
@@ -49,3 +50,15 @@ else {
     multipass launch lts --name relativepath
 }
 
+
+# Create ssh key pair if it does not exist for a given user
+# gets env username : [Environment]::UserName
+# gets user's home path: $env:USERPROFILE
+$userName = [Environment]::UserName
+if (Test-Path -Path "$env:USERPROFILE\.ssh\id_ed25519.pub" -PathType Leaf) {
+    Write-Output "$userName has an existing ssh key"
+}
+else{
+    Write-Output "Creating new SSH key pair for $userName"
+    ssh-keygen -f "$env:USERPROFILE\.ssh\id_ed25519" -t ed25519 -b 4096 -N '""'
+}
