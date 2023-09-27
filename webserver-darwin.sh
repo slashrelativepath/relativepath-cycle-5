@@ -32,12 +32,13 @@ fi
 
 # Install multipass
   echo "installing multipass on $(uname)"
-if  [ "$(uname)" = "Darwin" ]
+if  ( which multipass )
 then
   echo "multipass already installed on $(uname)"
 else
   echo "installing multipass on $(uname)"  
   brew install --cask multipass
+  sleep 5
 fi
 
 # ssh keys
