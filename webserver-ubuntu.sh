@@ -7,7 +7,7 @@ then
   echo "Nano already installed"
 else
   echo "Installing Nano"
-  apt install -y nano
+  sudo apt install -y nano
 fi
 
 echo "Checking if Git is installed"
@@ -16,7 +16,7 @@ then
   echo "Git is installed"
 else
   echo "Installing Git"
-  apt install -y git
+  sudo apt install -y git
 fi
 
 
@@ -36,7 +36,26 @@ else
     sudo apt update && sudo apt install -y snapd
     
   fi
-    # systemctl status snapd.service
-    echo "installing multipass"
-    sudo snap install multipass
+
+  echo "installing multipass"
+  sudo snap install multipass
+fi
+
+# Thanks Chris Forti!
+# changing the folder from ed25519 to .ed25519 as this makes it hidden (I think)
+if [[ -f "./.ed25519" ]]
+then
+  echo "relativepath ssh key exists"
+else
+  echo "relativepath ssh key does not exist, creating..."
+  ssh-keygen -f "./.ed25519" -t ed25519 -b 4096 -N ''
+fi
+
+
+if ( multipass info relativepath )
+then
+  echo "multipass instance already exists"
+else
+  echo "creating relativepath VM"
+  multipass launch lts --name relativepath
 fi
