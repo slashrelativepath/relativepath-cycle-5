@@ -38,6 +38,7 @@ then
 else
   echo "installing multipass on $(uname)"  
   brew install --cask multipass
+  sleep 5
 fi
 
 # ssh keys
