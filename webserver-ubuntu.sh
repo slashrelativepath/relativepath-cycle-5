@@ -43,12 +43,12 @@ fi
 
 # Thanks Chris Forti!
 # changing the folder from ed25519 to .ed25519 as this makes it hidden (I think)
-if [[ -f "./.ed25519" ]]
+if [ -f ed25519 ]
 then
   echo "relativepath ssh key exists"
 else
   echo "relativepath ssh key does not exist, creating..."
-  ssh-keygen -f "./.ed25519" -t ed25519 -b 4096 -N ''
+  ssh-keygen -f "./ed25519" -t ed25519 -b 4096 -N ''
 fi
 
 
@@ -57,5 +57,5 @@ then
   echo "multipass instance already exists"
 else
   echo "creating relativepath VM"
-  multipass launch lts --name relativepath
+  multipass launch --name relativepath
 fi
