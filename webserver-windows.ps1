@@ -30,13 +30,36 @@ else {
 }
 
 
+# Create ssh key pair if it does not exist for a given user
+# gets env username : [Environment]::UserName
+# gets user's home path: $env:USERPROFILE
+$env:userName = [Environment]::UserName
+if ( Test-Path -Path "$env:USERPROFILE\.ssh\multipass" ){
+    Write-Output "Multipass ssh root folder exists"
+}
+else {
+    Write-Output "Creating Multipass ssh root folder"
+    New-Item -ItemType Directory -Path "$env:USERPROFILE\.ssh\multipass"
+}
+if (Test-Path -Path "$env:USERPROFILE\.ssh\multipass\id_ed25519.pub" -PathType Leaf) {
+    Write-Output "$userName has an existing ssh key"
+}
+else{
+    Write-Output "Creating new SSH key pair for $userName"
+    ssh-keygen -f "$env:USERPROFILE\.ssh\multipass\id_ed25519" -t ed25519 -b 4096 -N '""' -C $Env:userName ; 
+}
+$Env:userKey = Get-Content "$env:USERPROFILE\.ssh\multipass\id_ed25519.pub" -Raw
+
+# Use VirtualBox to set up port forwarding for a Multipass instance
+# NOT WORKING CURRENTLY
+
+
 # install Multipass if .exe is not installed
 if (Get-Command -Name multipass.exe -ErrorAction SilentlyContinue) {
     Write-Output "Multipass is here"
 }
 else {
     Write-Output  "Installing Multipass"
-    # break virtualbox install out of this conditional
     choco install -y virtualbox --params "'/NoDesktopShortcut /ExtensionPack'"
     choco install -y multipass --force --params "'/HyperVisor:VirtualBox'"
 }
@@ -47,18 +70,7 @@ if ( multipass info relativepath ){
 }
 else {
     Write-Output "Launching Ubuntu LTS"
-    multipass launch lts --name relativepath
+    multipass launch --name relativepath --cloud-init cloud-init-windows.yaml --network name=Ethernet 
 }
 
 
-# Create ssh key pair if it does not exist for a given user
-# gets env username : [Environment]::UserName
-# gets user's home path: $env:USERPROFILE
-$userName = [Environment]::UserName
-if (Test-Path -Path "$env:USERPROFILE\.ssh\id_ed25519.pub" -PathType Leaf) {
-    Write-Output "$userName has an existing ssh key"
-}
-else{
-    Write-Output "Creating new SSH key pair for $userName"
-    ssh-keygen -f "$env:USERPROFILE\.ssh\id_ed25519" -t ed25519 -b 4096 -N '""'
-}

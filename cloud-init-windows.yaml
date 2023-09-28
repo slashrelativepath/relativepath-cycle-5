@@ -2,7 +2,7 @@
 
 users:
   - default
-  - name: ${userName}
+  - name: ${env:userName}
     sudo: ALL=(ALL) NOPASSWD:ALL
     ssh_authorized_keys:
-    - ${$userKey}
+    - ${env:userKey}
