@@ -1,15 +1,17 @@
-#!/usr/bin/zsh
+#!/bin/bash
 
-echo "brew should be installed"
+# Install homebrew
+  echo "brew should be installed"
 if ( which brew )
 then
   echo "brew already installed"
 else
   echo "installing brew"
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-echo "git should be installed"
+# Install git
+  echo "git should be installed"
 if ( which git )
 then 
   echo "git already installed"
@@ -18,7 +20,8 @@ else
   brew install git
 fi
 
-echo "nano should be installed"
+#install nano
+  echo "nano should be installed"
 if ( which nano )
 then
   echo "nano already installed"
@@ -27,3 +30,31 @@ else
   brew install nano 
 fi
 
+# Install multipass
+  echo "installing multipass on $(uname)"
+if  ( which multipass )
+then
+  echo "multipass already installed on $(uname)"
+else
+  echo "installing multipass on $(uname)"  
+  brew install --cask multipass
+  sleep 5
+fi
+
+# ssh keys
+if [ -f "./ed25519" ]
+then
+  echo "relativepath ssh key exists"
+else
+  echo "relativepath ssh key does not exist, creating..."
+  ssh-keygen -f "./ed25519" -t ed25519 -b 4096 -N ''
+fi
+
+# Spinning up an ubuntu vm
+if ( multipass info relativepath | grep Running )
+then 
+  echo "relativepath vm is running"
+else 
+  echo "launching a ubuntu vm named relativepath"
+  multipass launch --name relativepath
+fi
