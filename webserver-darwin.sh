@@ -73,5 +73,5 @@ then
   echo "relativepath vm is running"
 else 
   echo "launching a ubuntu vm named relativepath"
-  multipass launch --name relativepath
+  multipass launch --name relativepath --cloud-init cloud-init.yaml
 fi
