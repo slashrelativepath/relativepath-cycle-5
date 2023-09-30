@@ -84,3 +84,8 @@ else
   echo "launching a ubuntu vm named relativepath"
   multipass launch --name relativepath --cloud-init cloud-init.yaml
 fi
+
+# SSH into Relativepath VM
+ssh -o StrictHostKeyChecking=no -i "./id_ed25519" $USER@$(multipass info 
+relativepath | grep IPv4 | awk '{ print $2 }')
+
