@@ -50,11 +50,28 @@ else
   ssh-keygen -f "./ed25519" -t ed25519 -b 4096 -N ''
 fi
 
+# Create cloud-init.yaml
+if [ -f cloud-init.yaml ] 
+then
+  echo -e "\n==== Cloud-init.yaml present ====\n"
+else
+  echo -e "\n==== Creating cloud-init.yaml ====\n"
+  cat <<- EOF > cloud-init.yaml
+users:
+  - default
+  - name: $USER
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    ssh_authorized_keys:
+      - $(cat id_ed25519.pub)
+EOF
+fi
+
 # Spinning up an ubuntu vm
 if ( multipass info relativepath | grep Running )
 then 
   echo "relativepath vm is running"
 else 
   echo "launching a ubuntu vm named relativepath"
-  multipass launch --name relativepath
+  multipass launch --name relativepath --cloud-init cloud-init.yaml
 fi
