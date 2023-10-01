@@ -30,15 +30,6 @@ else
   brew install nano 
 fi
 
-# Set Multipass local driver to Qemu
-if [ "$(multipass get local.driver)" = "qemu" ]
-then
-  echo -e "\n==== Qemu local driver set ====\n"
-else
-  echo -e "\n==== Setting Qemu as Multipass local driver ====\n"
-  multipass set local.driver=qemu
-fi
-
 # Install multipass
   echo "installing multipass on $(uname)"
 if  ( which multipass )
@@ -49,6 +40,16 @@ else
   brew install --cask multipass
   sleep 5
 fi
+
+# Set Multipass local driver to Qemu
+if [ "$(multipass get local.driver)" = "qemu" ]
+then
+  echo -e "\n==== Qemu local driver set ====\n"
+else
+  echo -e "\n==== Setting Qemu as Multipass local driver ====\n"
+  multipass set local.driver=qemu
+fi
+
 
 # ssh keys
 if [ -f "./ed25519" ]
