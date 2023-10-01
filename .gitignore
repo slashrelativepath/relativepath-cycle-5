@@ -1,0 +1,4 @@
+# ignore relativepath ssh key files
+
+id_ed25519*
+cloud-init.yaml
