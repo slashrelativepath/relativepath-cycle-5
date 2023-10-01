@@ -86,6 +86,5 @@ else
 fi
 
 # SSH into Relativepath VM
-ssh -o StrictHostKeyChecking=no -i "./id_ed25519" $USER@$(multipass info 
-relativepath | grep IPv4 | awk '{ print $2 }')
+ssh -o StrictHostKeyChecking=no -i "./id_ed25519" $USER@$(multipass info relativepath | grep IPv4 | awk '{ print $2 }')
 
